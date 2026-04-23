@@ -1,9 +1,4 @@
 import express from "express";
-import { config } from "./config/env.config.js"; /* De mientras que no se define el db.config.js
-La cadena de sucesos, db.config.js (que demanda el import de config) es invocada luego por dbConnection(pendiente) que
-termina por inicializar las variables de entorno, luego, cuando serverInit.js consume dbConnection con las .env inicializadas
-llega al archivo de arranque(presente) hace que no sea necesario mantener el import {config} from ... aquí
-*/
 
 
 import { serverInit } from "./services/serverInit.js";

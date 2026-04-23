@@ -4,14 +4,15 @@ dotenv.config();
 
 export const config = {
     port : process.env.PORT || 3000,
-
-    //SECRET KEY para DB
-    /* db: {    setteo de la db, luego crear el db.config
+    //palabra secreta para la db
+    secretKey: process.env.SECRET_KEY,
+    // setteo y declaracion de las variables de entorno
+    db: {    
         name: process.env.DB_NAME,
         user: process.env.DB_USER,
         pass: process.env.DB_PASS,
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         dialect: process.env.DB_DIALECT,
-    } */
+    }
 }
