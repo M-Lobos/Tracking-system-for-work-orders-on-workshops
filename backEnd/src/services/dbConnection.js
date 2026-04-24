@@ -1,4 +1,5 @@
 import { dbConfig } from "../config/db.config.js";
+import { InternalServerError } from "../errors/ErrorType.js";
 // import {models} from "" esto para cuando los modelos estén definidos
 
 export const connectingDb = async() => {
@@ -9,9 +10,12 @@ export const connectingDb = async() => {
             console.log(" ✅ Models and associations initialized!"); */
             await dbConfig.sync({alter: true}); //permite y sincroniza modificaciones en tablas de la DB
     } catch (error) {
-        console.error(" 🟥 Unable to connect to the DB, authentication error",error)
-        /* throw new Error 
-            Reemplazar el console.error por manejo de errores
-        */
+        // Si el error viene de Sequelize (malas credenciales)
+        if (error.name === 'SequelizeConnectionRefusedError' || error.name === 'SequelizeAccessDeniedError') {
+            throw new InternalServerError("🚫 Database credentials are incorrect. Check your .env values.", 500, error);
+        }
+        
+        throw new InternalServerError("🔴 Unable to connect to the DB, authentication error", 500 , error );
+
     }
 }

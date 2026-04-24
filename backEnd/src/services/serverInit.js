@@ -1,4 +1,5 @@
 import { connectingDb } from "./dbConnection.js";
+import { InternalServerError } from "../errors/ErrorType.js";
 
 export const serverInit = async(app , PORT) => {
     try {
@@ -10,6 +11,6 @@ export const serverInit = async(app , PORT) => {
             console.log(`🟢 Server running at port ${PORT}`)
         })
     } catch (error) {
-        console.error("🔴 Error conecting to server", error)
+        console.error("🔴", error);
     }
 }
