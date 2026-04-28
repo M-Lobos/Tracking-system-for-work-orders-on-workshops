@@ -8,7 +8,7 @@ export const connectingDb = async() => {
         /* console.log(" 🟨 Initialing models and associations... ⏳");
             models <-- instancia modelos
             console.log(" ✅ Models and associations initialized!"); */
-            await dbConfig.sync({alter: true}); //permite y sincroniza modificaciones en tablas de la DB
+        await dbConfig.sync({alter: true}); //permite y sincroniza modificaciones en tablas de la DB
     } catch (error) {
         // Si el error viene de Sequelize (malas credenciales)
         if (error.name === 'SequelizeConnectionRefusedError' || error.name === 'SequelizeAccessDeniedError') {
